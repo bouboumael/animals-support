@@ -1,0 +1,5 @@
+<?php
+
+define('DSN', 'mysql:host=localhost;dbname=support_pdo');
+define('USER', 'username');
+define('PASS', 'password');
