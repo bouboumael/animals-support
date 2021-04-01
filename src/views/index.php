@@ -10,10 +10,12 @@
 
 <body>
     <h1>Animal listing</h1>
+    <button><a href="/?sort=name">Sort by name</a></button>
+    <button><a href="/?sort=weight">Sort by weight</a></button>
     <section>
         <ul>
             <?php foreach ($animals as $animal) : ?>
-                <li><?= $animal->image . $animal->name . '-' . $animal->weight ?></li>
+                <li><?= $animal->image . $animal->name . ' - ' . $animal->weight . 'kg' ?></li>
             <?php endforeach ?>
         </ul>
     </section>

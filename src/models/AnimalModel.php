@@ -10,13 +10,24 @@ class AnimalModel
 
     public function __construct()
     {
-        $this->connection = new PDO(DSN, USER, PASS);      
+        $this->connection = new PDO(DSN, USER, PASS);  
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     }
 
     public function getAll(): array
     {
-        $statement = $this->connection->query('SELECT * FROM animal ORDER BY name ASC');
+        $order = $_GET['sort'] ?? 'name';
+
+        $inputs = ['name', 'weight'];
+        
+        if (!in_array($order, $inputs)){
+            $order = 'name';
+        }
+        $query = "SELECT * FROM animal ORDER BY $order ASC";
+        $statement = $this->connection->query($query);
         return $statement->fetchAll(PDO::FETCH_OBJ);
     }
+    
 
 }
